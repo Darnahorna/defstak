@@ -1,0 +1,101 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './css/montserrat-bold.css';
+@import './css/montserrat-regular.css';
+
+:root {
+  --accent-font: 'Montserrat Bold';
+  --main-font: 'Montserrat Regular';
+  --text-color: #00204a;
+  --primary-color: #1d83d4;
+  --secondary-color: #2196f3;
+  --highlight-color: #ff9800;
+  --box-shadow: 0 10px 10px rgb(0 0 0 / 15%);
+  --border-radius: 1rem;
+  --border-radius-light: 0.3rem;
+  --light-gray: #f7f8f8;
+  --light-white: #f2f5f7;
+  --light: white;
+  --light-blue-color: rgb(33 150 243 / 15%);
+  --font-size-large-x: 1.5rem;
+  --font-size-large: 1.25rem;
+  --font-size-medium: 1rem;
+  --font-size-small: 0.75rem;
+  --normal-transition: ease-in-out 2ms;
+  --button-padding: 0.3rem 1rem;
+  --table-padding: 0.5rem 1rem;
+}
+
+body {
+  font-family: var(--main-font);
+  font-weight: 300;
+  color: var(--text-color);
+  font-size: var(--font-size-medium);
+}
+#app {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    'header header header header'
+    'sidebar main main main'
+    'footer footer footer footer';
+
+  width: 80vw;
+  margin: 0 auto;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-top: 2rem;
+}
+
+.header {
+  grid-area: header;
+  padding: 0 1rem;
+  border-bottom: 1px solid #dadce0;
+}
+.main {
+  grid-area: main;
+  background-color: var(--light-white);
+  padding: 2rem;
+}
+.sidebar {
+  grid-area: sidebar;
+  height: 80vh;
+  padding-top: 1rem;
+  border-left: 1px solid #dadce0;
+}
+.footer {
+  grid-area: footer;
+  background-color: coral;
+}
+
+/* // X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+}
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  #app {
+    grid-template-areas:
+      'header  '
+      'sidebar '
+      'main '
+      'footer ';
+    grid-template-columns: repeat(1, 1fr);
+    width: 100vw;
+    border-radius: var(--border-radius);
+    margin-top: 0;
+  }
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  body {
+    font-size: var(--font-size-small);
+  }
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+}

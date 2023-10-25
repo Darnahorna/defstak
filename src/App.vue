@@ -1,19 +1,21 @@
 <script setup>
-import Navigation from './components/Navigation.vue'
-import SideBar from './components/SideBar.vue'
-import ManageUsersPage from './components/pages/ManageUsersPage.vue'
+import { RouterView } from 'vue-router'
+import NavBar from './components/NavBar.vue'
+import NavList from './components/NavList.vue'
 </script>
 
 <template>
   <header class="header">
-    <Navigation></Navigation>
+    <NavBar />
   </header>
-  <main class="main"><ManageUsersPage></ManageUsersPage></main>
-  <div class="sidebar"><SideBar></SideBar></div>
-  <footer class="footer">Footer</footer>
+  <main class="main">
+    <RouterView />
+  </main>
+  <div class="sidebar"><NavList /></div>
+  <footer class="footer flex flex-row justify-center items-center border-t p-3 bottom-0">
+    <div class="flex flex-row items-center">
+      <img class="w-8 mr-2" src="./assets/images/logo.png" alt="logo" />
+      <p>Copyright &copy; 2023</p>
+    </div>
+  </footer>
 </template>
-
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>

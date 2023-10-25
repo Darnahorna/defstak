@@ -4,6 +4,12 @@
 
 @import './css/montserrat-bold.css';
 @import './css/montserrat-regular.css';
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+}
 
 :root {
   --accent-font: 'Montserrat Bold';
@@ -16,16 +22,15 @@
   --border-radius: 1rem;
   --border-radius-light: 0.3rem;
   --light-gray: #f7f8f8;
-  --light-white: #f2f5f7;
   --light: white;
-  --light-blue-color: rgb(33 150 243 / 15%);
+  --light-blue: rgb(33 150 243 / 15%);
   --font-size-large-x: 1.5rem;
   --font-size-large: 1.25rem;
   --font-size-medium: 1rem;
   --font-size-small: 0.75rem;
   --normal-transition: ease-in-out 2ms;
   --button-padding: 0.3rem 1rem;
-  --table-padding: 0.5rem 1rem;
+  /* --table-padding: 0.5rem 1rem; */
 }
 
 body {
@@ -36,39 +41,38 @@ body {
 }
 #app {
   display: grid;
-  grid-template-columns: repeat(4, 2fr);
+
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
     'header header header header'
     'sidebar main main main'
     'footer footer footer footer';
 
-  width: 80vw;
-  margin: 0 auto;
-  box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  margin-top: 2rem;
 }
 
 .header {
   grid-area: header;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   border-bottom: 1px solid #dadce0;
 }
 .main {
   grid-area: main;
   background-color: var(--light-white);
-  padding: 2rem;
+  border-left: 1px solid #dadce0;
+  position: relative;
+  height: fit-content;
 }
 .sidebar {
   grid-area: sidebar;
   height: 80vh;
   padding-top: 1rem;
-  border-left: 1px solid #dadce0;
+  margin: 0 auto;
 }
 .footer {
+  border-top: 1px solid #dadce0;
   grid-area: footer;
-  background-color: coral;
 }
 
 /* // X-Small devices (portrait phones, less than 576px) */
@@ -76,23 +80,28 @@ body {
 }
 /* // Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
-  #app {
-    grid-template-areas:
-      'header  '
-      'sidebar '
-      'main '
-      'footer ';
-    grid-template-columns: repeat(1, 1fr);
-    width: 100vw;
-    border-radius: var(--border-radius);
-    margin-top: 0;
-  }
 }
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
   body {
     font-size: var(--font-size-small);
+  }
+  #app {
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .sidebar {
+    display: none;
+  }
+  .header {
+    padding: 1rem;
+  }
+  .main {
+    border-left: 0;
   }
 }
 

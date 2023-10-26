@@ -1,7 +1,13 @@
 <template>
-  <div class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color ml-4">
+  <div>
     <label :for="selectId">{{ label }}</label>
-    <select :name="name" :id="selectId" :value="modelValue" @change="handleChange">
+    <select
+      :name="name"
+      :id="selectId"
+      :value="modelValue"
+      @change="handleChange"
+      class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color ml-4"
+    >
       <option v-for="option in options" :key="option">{{ option }}</option>
     </select>
   </div>

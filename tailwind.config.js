@@ -9,7 +9,9 @@ module.exports = {
       'highlight-color': '#ff9800',
       'light-gray': '#f7f8f8',
       light: '#ffffff',
-      'light-blue': 'rgb(33 150 243 / 15%)'
+      'light-blue': 'rgb(33 150 243 / 15%)',
+      red: '#ff0000',
+      green: '#13ce66'
     }
   },
   fontFamily: {

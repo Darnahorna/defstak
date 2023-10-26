@@ -59,7 +59,7 @@ const userData = ref({
 })
 const roleOptions = ref(['1', '2', '3', '4', '5'])
 
-const emit = defineEmits[('user-data-submitted', 'closeForm')]
+const emit = defineEmits(['user-data-submitted', 'closeForm'])
 
 const hideAddUserPage = () => {
   emit('closeForm')

@@ -30,6 +30,7 @@
         </button>
       </div>
     </form>
+    <div v-if="error" class="text-red mt-3">{{ error }}</div>
   </div>
 </template>
 
@@ -41,6 +42,7 @@ import FormField from '../components/FormField.vue'
 
 const username = ref('')
 const password = ref('')
+const error = ref('')
 
 const router = useRouter()
 
@@ -53,6 +55,9 @@ const handleLogin = async () => {
       router.push({ name: 'Admin' })
     } else {
       router.push({ name: 'Login' })
+      error.value = 'Incorrect username or password. Please try again.'
+      password.value = ''
+      username.value = ''
     }
   } catch (error) {
     console.error('Authentication error:', error)

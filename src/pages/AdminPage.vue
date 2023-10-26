@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import SearchIcon from '../components/icons/SearchIcon.vue'
+import { computed, ref } from 'vue'
+//mport SearchIcon from '../components/icons/SearchIcon.vue'
 import users from '../../data/data'
 import AddNew from '../views/AddNew.vue'
 import EditUser from '../views/EditUser.vue'
@@ -17,17 +17,18 @@ const count = ref(users.length)
 const showAddUser = ref(false)
 const showEditUser = ref(false)
 
+const currentPage = ref(1)
+const itemsPerPage = ref(20)
+
 function showAddUserPage() {
   showAddUser.value = true
 }
 function hideAddUserPage() {
   showAddUser.value = false
 }
-
 const userToEdit = ref(null)
 
-const tableHeaders = ['id', 'name', 'surname', 'email', 'role']
-//just a variable, not reactive
+const tableHeaders = ['id', 'name', 'surname', 'role', 'email']
 
 const showEditUserPage = (user) => {
   showEditUser.value = true
@@ -36,10 +37,11 @@ const showEditUserPage = (user) => {
 const hideEditUserPage = () => {
   showEditUser.value = false
 }
-const handleUserData = (userData) => {
+const handleUserAdd = (userData) => {
   const newUser = { ...userData }
-  newUser.id = count.value + 1
-  arr.value.push({ ...userData })
+  count.value++
+  newUser.id = count.value
+  arr.value.push(newUser)
 }
 const handleUserDelete = (userToRemove) => {
   arr.value = arr.value.filter((user) => user !== userToRemove)
@@ -50,6 +52,18 @@ const handleUserEdit = (userToUpdate) => {
   const newUser = { ...existingUser, ...userToUpdate }
   arr.value[userIndex] = newUser
 }
+const handleCurrentPageChange = (currentPageData) => {
+  currentPage.value = currentPageData
+}
+const handleItemsPerPageChange = (itemsPerPageData) => {
+  itemsPerPage.value = itemsPerPageData
+}
+const computedUsers = computed(() => {
+  return arr.value.slice(
+    (currentPage.value - 1) * itemsPerPage.value,
+    currentPage.value * itemsPerPage.value
+  )
+})
 </script>
 
 <template>
@@ -62,27 +76,33 @@ const handleUserEdit = (userToUpdate) => {
     <div>
       <div class="table-title mb-5">
         <h2>User List</h2>
-        <div class="search-input">
+        <!-- <div class="search-input">
           <SearchIcon />
           <input type="search" placeholder="Search Users" />
-        </div>
+        </div> -->
       </div>
     </div>
 
     <TableComponent
       :headers="tableHeaders"
-      :users="arr"
+      :users="computedUsers"
       @handleUserDelete="handleUserDelete"
       @showEditUserPage="showEditUserPage"
     />
 
-    <PaginationBar />
+    <PaginationBar
+      :totalItems="arr.length"
+      :currentPage="currentPage"
+      :itemsPerPage="itemsPerPage"
+      @pageChange="handleCurrentPageChange"
+      @itemsPerPageChange="handleItemsPerPageChange"
+    />
 
     <TransitionSlideLeft>
       <AddNew
         v-if="showAddUser"
         @closeForm="hideAddUserPage"
-        @user-data-submitted="handleUserData"
+        @user-data-submitted="handleUserAdd"
         class="absolute bg-light h-full inset-0"
       />
     </TransitionSlideLeft>
@@ -96,6 +116,11 @@ const handleUserEdit = (userToUpdate) => {
 </template>
 
 <style scoped>
+h1 {
+  font-family: var(--accent-font);
+  font-weight: 600;
+  font-size: var(--font-size-large);
+}
 .page-header {
   display: flex;
   justify-content: space-between;

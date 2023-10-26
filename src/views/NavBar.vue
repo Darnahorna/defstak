@@ -1,15 +1,15 @@
 <template>
   <nav class="flex flex-row justify-between self-center items-center">
     <RouterLink to="/"
-      ><div class="flex flex-row items-center logo">
+      ><div class="flex flex-row items-center">
         <img src="../assets/images/logo.png" alt="DefStak" class="w-1/5 h-1/5 object-contain" />
-        <span class="ml-2 font-text-2xl hover:text-highlight-color hover:cursor-pointer"
-          >DefStak</span
-        >
+        <span class="ml-2 hover:text-highlight-color hover:cursor-pointer logo">DefStak</span>
       </div></RouterLink
     >
     <HamburgerMenu />
-    <a @click="handleLogout" class="self-center hover:text-highlight-color hover:cursor-pointer"
+    <a
+      @click="handleLogout"
+      class="self-center hover:text-highlight-color hover:cursor-pointer login"
       >Logout</a
     >
   </nav>
@@ -34,3 +34,16 @@ const handleLogout = async () => {
   }
 }
 </script>
+
+<style scoped>
+.logo {
+  font-family: var(--accent-font);
+  font-weight: 600;
+  font-size: var(--font-size-large-x);
+}
+@media (max-width: 991.98px) {
+  .login {
+    display: none;
+  }
+}
+</style>

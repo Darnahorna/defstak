@@ -26,7 +26,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(authService)
   if (to.path !== '/login' && !authService.isAuthenticated()) {
     next('/login')
   } else {

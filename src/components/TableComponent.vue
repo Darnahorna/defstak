@@ -1,8 +1,8 @@
 <template>
   <div class="scroll">
     <table class="">
-      <thead class="bg-light-gray m-5">
-        <tr class="text-left">
+      <thead class="bg-light-gray">
+        <tr class="text-left w-30">
           <th v-for="header in headers" :key="header">{{ header }}</th>
           <th>actions</th>
         </tr>
@@ -13,8 +13,18 @@
           <td v-for="header in headers" :key="header">{{ user[header] }}</td>
           <td>
             <div class="flex justify-evenly">
-              <button @click="showEditUserPage(user)" class="edit-btn">Edit</button>
-              <button @click="handleUserDelete(user)" class="delete-btn">Delete</button>
+              <button
+                @click="showEditUserPage(user)"
+                class="hover:text-green bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5"
+              >
+                Edit
+              </button>
+              <button
+                @click="handleUserDelete(user)"
+                class="hover:text-red bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5"
+              >
+                Delete
+              </button>
             </div>
           </td>
         </tr>
@@ -28,6 +38,7 @@ defineProps({
   users: Array,
   headers: Array
 })
+
 const emits = defineEmits(['showEditUserPage', 'handleUserDelete'])
 
 const showEditUserPage = (user) => {
@@ -39,56 +50,42 @@ const handleUserDelete = (user) => {
 </script>
 
 <style scoped>
-td,
-th {
-}
 table {
+  border-collapse: collapse;
+  border-spacing: 1rem;
+  table-layout: fixed;
   width: 100%;
 }
 
-button {
-  padding: var(--button-padding);
-  background-color: var(--light-gray);
-  display: flex;
-  flex-direction: row;
-  opacity: 0.7;
-  align-self: center;
-  gap: 0.3rem;
+td,
+th {
+  padding: 0.5rem 0.3rem;
+  overflow: hidden;
   font-size: var(--font-size-small);
-  justify-content: center;
-}
-
-.edit-btn:hover {
-  color: green;
-  opacity: 0.7;
-}
-.delete-btn:hover {
-  color: red;
-  opacity: 0.7;
 }
 @media (max-width: 991.98px) {
-  table {
-    width: 100%;
-    table-layout: fixed;
-  }
   .scroll {
-    width: 100%; /* Set the width of the parent div */
-    overflow-x: auto; /* Enable horizontal scrolling when the content overflows the parent div */
-    white-space: nowrap;
+    max-width: 45rem;
+    overflow-x: scroll;
   }
-  /* Style the scrollbar track */
-  ::-webkit-scrollbar {
-    width: 1rem;
+  table {
+    width: 80%;
   }
-
-  /* Style the scrollbar thumb */
-  ::-webkit-scrollbar-thumb {
-    background: #888; /* Color of the thumb */
+}
+@media (max-width: 767.98px) {
+  .scroll {
+    max-width: 35rem;
   }
-
-  /* Style the scrollbar track on hover */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the track */
+  table {
+    width: auto;
+  }
+}
+@media (max-width: 575.98px) {
+  .scroll {
+    max-width: 19rem;
+  }
+  table {
+    width: auto;
   }
 }
 </style>

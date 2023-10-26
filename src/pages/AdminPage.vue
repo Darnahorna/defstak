@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-//mport SearchIcon from '../components/icons/SearchIcon.vue'
+import SearchIcon from '../components/icons/SearchIcon.vue'
 import users from '../../data/data'
 import AddNew from '../views/AddNew.vue'
 import EditUser from '../views/EditUser.vue'
@@ -67,7 +67,7 @@ const computedUsers = computed(() => {
 </script>
 
 <template>
-  <div class="p-5 m-5">
+  <div class="p-5 m-5 page">
     <div class="page-header mb-5">
       <h1>Manage Users</h1>
       <button @click="showAddUserPage">Add User</button>
@@ -76,10 +76,10 @@ const computedUsers = computed(() => {
     <div>
       <div class="table-title mb-5">
         <h2>User List</h2>
-        <!-- <div class="search-input">
+        <div class="search-input">
           <SearchIcon />
           <input type="search" placeholder="Search Users" />
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -109,13 +109,16 @@ const computedUsers = computed(() => {
     <EditUser
       v-if="showEditUser"
       @closeForm="hideEditUserPage"
-      @user-data-edited="handleUserEdit"
+      @userDataEdited="handleUserEdit"
       :user="userToEdit"
     />
   </div>
 </template>
 
 <style scoped>
+.page {
+  min-height: 80vh;
+}
 h1 {
   font-family: var(--accent-font);
   font-weight: 600;

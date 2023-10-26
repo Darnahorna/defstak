@@ -1,112 +1,85 @@
-<script setup>
-import CloseIcon from '../components/icons/CloseIcon.vue'
-</script>
-
-<script>
-export default {
-  props: {
-    user: {
-      type: Object
-    }
-  },
-  data() {
-    return {
-      localUser: { ...this.user } // Create a local copy of the prop
-    }
-  },
-  methods: {
-    hideEditPage() {
-      this.$emit('closeForm')
-    },
-    saveEditedUser() {
-      const editedUser = { ...this.localUser }
-      this.$emit('user-data-edited', editedUser)
-      this.$emit('closeForm')
-    }
-  }
-}
-</script>
-
 <template>
-  <div class="user-details">
-    <div class="page-header">
+  <div class="user-details mt-3">
+    <div class="flex gap-4">
       <CloseIcon class="close-icon" @click="hideEditPage"></CloseIcon>
-      <h1 class="page-title">Edit User</h1>
-      <button type="submit" form="user-form" value="Update">Save</button>
+      <h1 class="page-title">Edit New User</h1>
     </div>
-    <div class="content">
-      <h2>User Details</h2>
-      <form class="edit-user-form" id="user-form" @submit.prevent="saveEditedUser">
+    <div class="flex justify-center flex-col self-center items-center bg-light p-8">
+      <h2 class="text-lg">User Details</h2>
+      <form class="flex flex-col gap-6" id="user-form" @submit.prevent="saveEditedUser">
         <div class="instructions">Please edit user details</div>
+        <FormField
+          v-model="localUser.name"
+          label="Enter user name"
+          placeholder="User name"
+          name="name"
+          :isRequired="true"
+          type="name"
+        />
+        <FormField
+          v-model="localUser.surname"
+          label="Enter user surname"
+          placeholder="User surname"
+          name="surname"
+          :isRequired="true"
+          type="surname"
+        />
+        <FormField
+          v-model="localUser.email"
+          label="Enter user email"
+          placeholder="User email"
+          name="email"
+          :isRequired="true"
+          type="email"
+        />
 
-        <div class="form-field">
-          <label for="name">Edit user name</label>
-          <input
-            v-model="localUser.name"
-            type="text"
-            placeholder="User name"
-            autoComplete="on"
-            name="name"
-            id="name"
-            required
-          />
-        </div>
-        <div class="form-field">
-          <label for="surname">Edit user surname</label>
-          <input
-            v-model="localUser.surname"
-            type="text"
-            placeholder="User surname"
-            autoComplete="on"
-            name="surname"
-            id="surname"
-            required
-          />
-        </div>
-        <div class="form-field">
-          <label for="email">Edit user email</label>
-          <input
-            v-model="localUser.email"
-            type="email"
-            placeholder="User email"
-            autoComplete="on"
-            name="email"
-            id="email"
-            required
-          />
-        </div>
-        <div class="form-select">
-          <label for="user-role">Edit user role</label>
-          <select name="user-role" id="user-role" v-model="localUser.role">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
+        <FormSelect
+          v-model="localUser.role"
+          label="Enter user role"
+          name="user-role"
+          :options="roleOptions"
+          required="true"
+        />
+        <button type="submit" form="user-form" value="Update" class=":hover:bg-secondary-color">
+          Save
+        </button>
       </form>
     </div>
   </div>
 </template>
 
+<script setup>
+import { defineProps, defineEmits, ref, toRef } from 'vue'
+import CloseIcon from '../components/icons/CloseIcon.vue'
+import FormField from '../components/FormField.vue'
+import FormSelect from '../components/FormSelect.vue'
+
+const roleOptions = ref(['1', '2', '3', '4', '5'])
+
+const props = defineProps({ user: Object })
+const emit = defineEmits(['closeForm'])
+
+const user = toRef(props.user)
+const localUser = ref(user.value)
+
+const hideEditPage = () => {
+  emit('closeForm')
+}
+const saveEditedUser = () => {
+  const editedUser = { ...localUser.value }
+  emit('userDataEdited', editedUser)
+  emit('closeForm')
+}
+</script>
+
 <style scoped>
 .user-details {
-  position: absolute; /* or absolute, depending on your layout */
-  top: 50%; /* Adjust top, left, right, or bottom as needed */
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the view */
-  z-index: 2; /* Set a higher z-index value to ensure it's on top of the existing view */
-  background-color: white;
-  height: 100%;
-  width: 100%;
-  float: right;
-  transition: 3s;
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--light);
 }
 .close-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
   opacity: 0.7;
   border-bottom: 1px solid #dadce0;
   border-right: 1px solid #dadce0;
@@ -119,14 +92,8 @@ export default {
   font-size: var(--font-size-large-x);
   font-weight: 800;
 }
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 2.5rem 1rem;
-  position: relative;
-}
-.page-header button {
+
+button {
   background-color: var(--primary-color);
   padding: var(--button-padding);
   width: 15rem;
@@ -134,42 +101,12 @@ export default {
   border-radius: var(--border-radius-light);
   font-size: var(--font-size-medium);
 }
-.page-header button:hover {
-  background-color: var(--secondary-color);
-  transition: var(--normal-transition);
-}
-.content {
-  background-color: var(--light);
-  padding: 2rem;
-}
+
 .content h2 {
   font-size: var(--font-size-large);
   font-weight: 600;
 }
-.edit-user-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.form-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  gap: 1rem;
-}
-.form-field input {
-  background-color: var(--light-gray);
-  padding: var(--button-padding);
-  border-radius: var(--border-radius);
-  outline-color: var(--primary-color);
-}
-.form-select select {
-  background-color: var(--light-gray);
-  padding: var(--button-padding);
-  border-radius: var(--border-radius);
-  outline-color: var(--primary-color);
-  margin-left: 1rem;
-}
+
 @media (max-width: 767.98px) {
   .page-header button {
     width: 10rem;

@@ -2,9 +2,10 @@
   <div class="flex justify-between mt-2 p-2">
     <div>
       <span>Rows per page </span>
-      <select v-model="localItemsPerPage" @change="handleItemsPerPageChange">
+      <select v-model="localItemsPerPage" @change="handleItemsPerPageChange" class="px-1 py-1">
         <option>10</option>
         <option>20</option>
+        <option>30</option>
       </select>
     </div>
 

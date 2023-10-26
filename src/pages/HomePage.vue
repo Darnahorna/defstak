@@ -1,16 +1,21 @@
 <template>
-  <div class="flex justify-center items-center m-5 p-5 h-full">
-    <div class="flex justify-center items-center flex-col gap-10">
+  <div class="flex justify-center items-center m-5 p-5 home">
+    <div class="flex justify-center items-center flex-col gap-10 text-center">
       <h1 class="text-xl font-extrabold mb-4 font-lg">Welcome to Default Stack Project</h1>
       <img src="../assets/images/logo.png" class="logo-home" />
-      <p>
+      <p class="text-lg">
         This is a test project from Prevas. The project is written in View using Tailwind to explore
-        the possibilities. Here you will be able to perform the simplest operations with users.
+        its the possibilities. Here you will be able to perform the simplest CRUD operations with
+        users.
       </p>
     </div>
   </div>
 </template>
 <style scoped>
+.home {
+  min-height: 80vh;
+}
+
 h1 {
   font-family: var(--accent-font);
   font-weight: 600;
@@ -20,7 +25,7 @@ h1 {
   transform: rotate(-45deg);
   width: 10%;
   height: 10%;
-  animation: bounce 0.5s infinite;
+  animation: bounce 2s infinite;
 }
 
 @keyframes bounce {

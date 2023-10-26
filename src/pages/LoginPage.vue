@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center h-85 p-5 m-5">
+  <div class="page flex flex-col justify-center items-center h-85 p-5 m-5 h-90">
     <h1 class="text-xl font-extrabold mb-4">Welcome Back</h1>
     <form class="flex flex-col gap-3" id="login-form" @submit.prevent="handleLogin">
       <p>Please enter login details</p>
@@ -22,7 +22,7 @@
 
       <div class="flex flex-col gap-2">
         <button
-          class="p-2 bg-primary-color px-button-padding w-60 text-light rounded-border-radius-light text-font-size-medium :hover:cursor-pointer"
+          class="px-4 py-1.5 rounded-2xl bg-primary-color text-light :hover:cursor-pointer mt-3"
           type="submit"
           required
         >
@@ -64,3 +64,9 @@ const handleLogin = async () => {
   }
 }
 </script>
+
+<style scoped>
+.page {
+  height: 80vh;
+}
+</style>

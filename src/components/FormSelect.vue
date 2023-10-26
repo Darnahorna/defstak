@@ -35,3 +35,9 @@ const selectId = computed(() => {
   return props.name || `select-${Math.random().toString(36).substr(2, 10)}`
 })
 </script>
+
+<style>
+select {
+  -moz-appearance: none;
+}
+</style>

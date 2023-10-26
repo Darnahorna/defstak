@@ -1,11 +1,11 @@
 <template>
-  <div class="user-details">
+  <div class="user-details mt-3">
     <div class="flex gap-4">
       <CloseIcon class="close-icon" @click="hideAddUserPage"></CloseIcon>
       <h1 class="page-title">Add New User</h1>
     </div>
     <div class="flex justify-center flex-col self-center items-center bg-light p-8">
-      <h2>User Details</h2>
+      <h2 class="text-lg">User Details</h2>
       <form class="flex flex-col gap-6" id="user-form" @submit.prevent="saveUserData">
         <div class="instructions">Please enter user details</div>
         <FormField

@@ -8,9 +8,9 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr v-for="user in users" :key="user.id" class="">
-          <td v-for="header in headers" :key="header">{{ user[header] }}</td>
+      <tbody v-if="users.length > 0">
+        <tr v-for="user in users" :key="user.id">
+          <td v-for="header in headers" :key="header" class="text-sm">{{ user[header] }}</td>
           <td>
             <div class="flex justify-evenly gap-3">
               <button
@@ -28,6 +28,9 @@
             </div>
           </td>
         </tr>
+      </tbody>
+      <tbody v-else>
+        <td class="text-xl text-center p-4 opacity-70" colspan="6">List is Empty</td>
       </tbody>
     </table>
   </div>
@@ -55,7 +58,6 @@ th {
   padding: 0.5rem 0.3rem;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: var(--font-size-small);
 }
 table {
   table-layout: fixed;

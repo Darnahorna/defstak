@@ -20,6 +20,8 @@ const showEditUser = ref(false)
 const currentPage = ref(1)
 const itemsPerPage = ref(20)
 
+const searchInput = ref(null)
+
 function showAddUserPage() {
   showAddUser.value = true
 }
@@ -64,6 +66,16 @@ const computedUsers = computed(() => {
     currentPage.value * itemsPerPage.value
   )
 })
+
+const handleSearch = () => {
+  arr.value = users.filter((user) => {
+    return (
+      user.name.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      user.surname.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchInput.value.toLowerCase())
+    )
+  })
+}
 </script>
 
 <template>
@@ -78,7 +90,12 @@ const computedUsers = computed(() => {
         <h2>User List</h2>
         <div class="search-input">
           <SearchIcon />
-          <input type="search" placeholder="Search Users" />
+          <input
+            v-model="searchInput"
+            @change="handleSearch"
+            type="search"
+            placeholder="Search Users"
+          />
         </div>
       </div>
     </div>
@@ -106,11 +123,13 @@ const computedUsers = computed(() => {
         class="absolute bg-light h-full inset-0"
       />
     </TransitionSlideLeft>
+
     <EditUser
       v-if="showEditUser"
       @closeForm="hideEditUserPage"
       @userDataEdited="handleUserEdit"
       :user="userToEdit"
+      class="absolute bg-light h-full inset-0"
     />
   </div>
 </template>
@@ -132,7 +151,6 @@ h1 {
 .page-header button {
   background-color: var(--primary-color);
   padding: var(--button-padding);
-
   color: var(--light);
   border-radius: var(--border-radius-light);
 }

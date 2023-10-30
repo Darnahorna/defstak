@@ -6,8 +6,9 @@
         <span class="ml-2 hover:text-highlight-color hover:cursor-pointer logo">DefStak</span>
       </div></RouterLink
     >
-    <HamburgerMenu />
     <DarkMode />
+    <HamburgerMenu />
+
     <!-- <a
       @click="handleLogout"
       class="self-center hover:text-highlight-color hover:cursor-pointer login"

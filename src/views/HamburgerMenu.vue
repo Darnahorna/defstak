@@ -10,11 +10,11 @@ import NavList from '../components/NavList.vue'
         @click="toggleMenu"
         :class="{ open: isMenuOpen }"
       >
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+        <div class="bar bg-text-color dark:bg-light dark:text-light"></div>
+        <div class="bar bg-text-color dark:bg-light dark:text-light"></div>
+        <div class="bar bg-text-color dark:bg-light dark:text-light"></div>
       </button>
-      <div className="menu-items" v-if="isMenuOpen">
+      <div className="menu-items bg-light dark:bg-text-color dark:text-light" v-if="isMenuOpen">
         <NavList class="menu" @handleItemClose="toggleMenu"></NavList>
       </div>
     </div>
@@ -36,7 +36,6 @@ const toggleMenu = () => {
   position: absolute;
   top: 6rem;
   right: -0.5rem;
-  background-color: var(--light);
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -47,7 +46,6 @@ const toggleMenu = () => {
 .bar {
   width: 2em;
   height: 0.3em;
-  background-color: var(--text-color);
   margin: 0.3em 0;
   transition: all 400ms cubic-bezier(0.84, 0.06, 0.52, 1.8);
   border-radius: 0.5rem;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-row justify-between">
     <label :for="selectId">{{ label }}</label>
     <select
       :name="name"
@@ -26,12 +26,12 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const handleChange = (event) => {
-  emit('update:modelValue', event.target.value)
   //emit selected value
+  emit('update:modelValue', Number(event.target.value))
 }
 
 const selectId = computed(() => {
-  //returns ref
+  //returns computed ref
   return props.name || `select-${Math.random().toString(36).substr(2, 10)}`
 })
 </script>

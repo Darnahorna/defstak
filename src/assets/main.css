@@ -30,7 +30,6 @@
   --font-size-small: 0.75rem;
   --normal-transition: ease-in-out 2ms;
   --button-padding: 0.3rem 1rem;
-  /* --table-padding: 0.5rem 1rem; */
 }
 
 body {
@@ -41,7 +40,6 @@ body {
 }
 #app {
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:

@@ -30,7 +30,7 @@
         </tr>
       </tbody>
       <tbody v-else>
-        <td class="text-xl text-center p-4 opacity-70" colspan="6">List is Empty</td>
+        <td class="text-xl text-center p-4 opacity-70" colspan="6">List is empty</td>
       </tbody>
     </table>
   </div>

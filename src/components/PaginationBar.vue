@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, isRef, toRef, computed, defineEmits, defineProps } from 'vue'
+import { ref, toRef, computed, defineEmits, defineProps } from 'vue'
 import ArrowLeft from './icons/ArrowLeftIcon.vue'
 import ArrowRight from './icons/ArrowRightIcon.vue'
 
@@ -35,8 +35,6 @@ const localCurrentPage = ref(currentPage.value)
 const itemsPerPage = toRef(props.itemsPerPage)
 const localItemsPerPage = ref(itemsPerPage.value)
 
-console.log(isRef(localItemsPerPage))
-
 const startItem = computed(() => {
   return (props.currentPage - 1) * props.itemsPerPage + 1
 })
@@ -47,7 +45,7 @@ const endItem = computed(() => {
 
 const handleItemsPerPageChange = () => {
   localCurrentPage.value = 1
-  emit('itemsPerPageChange', localItemsPerPage.value)
+  emit('itemsPerPageChange', Number(localItemsPerPage.value))
 }
 const previousPage = () => {
   if (localCurrentPage.value > 1) {

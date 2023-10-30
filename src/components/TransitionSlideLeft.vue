@@ -1,5 +1,6 @@
 <template>
   <Transition name="slide-left">
+    <!-- {children} -->
     <slot></slot>
   </Transition>
 </template>

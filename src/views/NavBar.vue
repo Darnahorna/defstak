@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import HamburgerMenu from '../views/HamburgerMenu.vue'
+import HamburgerMenu from './HamburgerMenu.vue'
 import authService from '../services/authenticate.js'
 import { useRouter } from 'vue-router'
 

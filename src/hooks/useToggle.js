@@ -3,12 +3,12 @@ import { ref } from 'vue'
 export function useToggle() {
   const toggle = ref(false)
 
-  function toggleOn() {
+  const toggleOn = () => {
     toggle.value = true
   }
-  function toggleOff() {
+  const toggleOff = () => {
     toggle.value = false
   }
 
-  return { toggleOn, toggleOff, toggle }
+  return { toggle, toggleOn, toggleOff }
 }

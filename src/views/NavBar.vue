@@ -7,16 +7,18 @@
       </div></RouterLink
     >
     <HamburgerMenu />
-    <a
+    <DarkMode />
+    <!-- <a
       @click="handleLogout"
       class="self-center hover:text-highlight-color hover:cursor-pointer login"
       >Logout</a
-    >
+    > -->
   </nav>
 </template>
 
 <script setup>
 import HamburgerMenu from './HamburgerMenu.vue'
+import DarkMode from '../components/DarkMode.vue'
 import authService from '../services/authenticate.js'
 import { useRouter } from 'vue-router'
 

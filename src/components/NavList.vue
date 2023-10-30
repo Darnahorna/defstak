@@ -3,7 +3,7 @@
     <RouterLink to="/admin">
       <li
         @click="handleItemClick"
-        class="flex flex-row justify-center py-1 px-0 items-end h-12 gap-2 hover:text-primary-color"
+        class="flex flex-row justify-center py-1 px-0 items-end h-12 gap-2 hover:text-primary-color dark:text-highlight-color"
       >
         <UsersEditIcon />
         Manage Users

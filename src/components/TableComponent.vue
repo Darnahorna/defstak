@@ -1,7 +1,7 @@
 <template>
   <div class="scroll">
     <table class="">
-      <thead class="bg-light-gray">
+      <thead class="bg-light-gray dark:bg-light-blue dark:text-light">
         <tr class="text-left w-30">
           <th v-for="header in headers" :key="header">{{ header }}</th>
           <th>actions</th>
@@ -15,13 +15,13 @@
             <div class="flex justify-evenly gap-3">
               <button
                 @click="showEditUserPage(user)"
-                class="hover:text-green bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5"
+                class="bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5 dark:bg-light-blue dark:text-light hover:text-green"
               >
                 Edit
               </button>
               <button
                 @click="handleUserDelete(user)"
-                class="hover:text-red bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5"
+                class="bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5 hover:text-red dark:bg-light-blue dark:text-light dark:hover:text-red"
               >
                 Delete
               </button>

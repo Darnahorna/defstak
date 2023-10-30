@@ -6,7 +6,7 @@
       :id="selectId"
       :value="modelValue"
       @change="handleChange"
-      class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color ml-4"
+      class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color ml-4 dark:bg-light-blue dark:text-light-gray"
     >
       <option v-for="option in options" :key="option">{{ option }}</option>
     </select>

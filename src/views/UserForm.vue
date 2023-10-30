@@ -1,12 +1,12 @@
 <template>
-  <div class="mt-3 absolute bg-light h-full inset-0">
+  <div class="mt-3">
     <div class="flex gap-4">
       <CloseIcon class="close-icon" @click="closeForm"></CloseIcon>
       <h1 v-if="mode === 'add'" class="text-2xl">Add New User</h1>
       <h1 v-else class="text-2xl">Edit New User</h1>
     </div>
-    <div class="flex justify-center flex-col self-center items-center bg-light p-8 w-full">
-      <h2 class="text-lg" v-if="mode === 'add'">User Details</h2>
+    <div class="flex justify-center flex-col self-center items-center p-8 w-full">
+      <h2 class="text-lg mb-3" v-if="mode === 'add'">User Details</h2>
       <h2 class="text-lg mb-3" v-else>Edit User</h2>
       <form @submit.prevent="handleSubmit" id="user-form" class="flex flex-col gap-6 w-80">
         <p v-if="mode === 'add'">Please enter user details</p>

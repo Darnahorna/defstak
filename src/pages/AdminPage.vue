@@ -109,7 +109,7 @@ const handleSearch = (search) => {
         @closeForm="hideAddUserPage"
         @userDataSubmitted="handleUserAdd"
         mode="add"
-        class="absolute bg-light h-full inset-0"
+        class="absolute bg-light h-100 inset-0 dark:bg-text-color dark:text-light"
       />
     </TransitionSlideLeft>
     <TransitionSlideLeft>
@@ -119,7 +119,7 @@ const handleSearch = (search) => {
         @userDataEdited="handleUserEdit"
         :user="userToEdit"
         mode="edit"
-        class="absolute bg-light h-full inset-0"
+        class="absolute bg-light h-100 inset-0 dark:bg-text-color"
       />
     </TransitionSlideLeft>
   </div>

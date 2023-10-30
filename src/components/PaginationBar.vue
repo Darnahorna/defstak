@@ -2,7 +2,11 @@
   <div class="flex justify-between mt-2 p-2">
     <div>
       <span>Rows per page </span>
-      <select v-model="localItemsPerPage" @change="handleItemsPerPageChange" class="px-1 py-1">
+      <select
+        v-model="localItemsPerPage"
+        @change="handleItemsPerPageChange"
+        class="bg-light px-1 py-1 cursor-pointer dark:bg-light-blue dark:text-light-gray"
+      >
         <option>10</option>
         <option>20</option>
         <option>30</option>
@@ -11,8 +15,8 @@
 
     <div class="flex flex-row gap-4">
       <div class="flex flex-row gap-4 opacity-70">
-        <span @click="previousPage"><ArrowLeft /></span>
-        <span @click="nextPage"><ArrowRight /></span>
+        <span @click="previousPage" class="cursor-pointer"><ArrowLeft /></span>
+        <span @click="nextPage" class="cursor-pointer"><ArrowRight /></span>
       </div>
       <div>
         <span>{{ startItem }} - {{ endItem }}</span> of <span>{{ totalItems }}</span> items

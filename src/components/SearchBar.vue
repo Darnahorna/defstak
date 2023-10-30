@@ -1,12 +1,14 @@
 <template>
-  <div class="px-4 py-1.5 bg-light-gray rounded-2xl flex justify-between self-center items-center">
+  <div
+    class="px-4 py-1.5 bg-light-gray rounded-2xl flex justify-between self-center items-center dark:bg-light-blue dark:text-light"
+  >
     <SearchIcon />
     <input
       type="search"
       :value="modelValue"
       :placeholder="placeholder"
       @change="handleSearch"
-      class="bg-light-gray outline-none ml-3"
+      class="bg-light-gray outline-none ml-3 dark:bg-light-blue dark:text-light"
     />
   </div>
 </template>

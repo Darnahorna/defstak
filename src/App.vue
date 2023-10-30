@@ -5,9 +5,12 @@ import NavList from './components/NavList.vue'
 </script>
 
 <template>
-  <header class="header">
+  <header
+    class="header sticky top-0 z-10 bg-light text-text-color dark:bg-text-color dark:text-light"
+  >
     <NavBar />
   </header>
+
   <main class="main">
     <RouterView />
   </main>
@@ -19,3 +22,9 @@ import NavList from './components/NavList.vue'
     </div>
   </footer>
 </template>
+
+<style scoped>
+html.dark {
+  color-scheme: dark;
+}
+</style>

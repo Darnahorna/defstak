@@ -10,7 +10,7 @@
       :id="inputId"
       :required="isRequired"
       @change="handleChange"
-      class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color"
+      class="bg-light-gray px-4 py-1.5 rounded-2xl outline-primary-color dark:bg-light-blue dark:text-light-gray"
     />
   </div>
 </template>

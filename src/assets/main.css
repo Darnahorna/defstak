@@ -31,6 +31,13 @@
   --normal-transition: ease-in-out 2ms;
   --button-padding: 0.3rem 1rem;
 }
+/* Dark mode CSS */
+@media (color-scheme: dark) {
+  :root {
+    --light: #282a36;
+    --text-color: #fff; /* Dark mode text color */
+  }
+}
 
 body {
   font-family: var(--main-font);

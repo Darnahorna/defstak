@@ -20,22 +20,22 @@
 <script setup>
 import HamburgerMenu from './HamburgerMenu.vue'
 import DarkMode from '../components/DarkMode.vue'
-import authService from '../services/authenticate.js'
-import { useRouter } from 'vue-router'
+// import authService from '../services/authenticate.js'
+// import { useRouter } from 'vue-router'
 
-const router = useRouter()
+// const router = useRouter()
 
-const handleLogout = async () => {
-  try {
-    const isAuthenticated = await authService.logout()
+// const handleLogout = async () => {
+//   try {
+//     const isAuthenticated = await authService.logout()
 
-    if (isAuthenticated) {
-      router.push({ name: 'Login' })
-    }
-  } catch (error) {
-    console.error('Authentication error:', error)
-  }
-}
+//     if (isAuthenticated) {
+//       router.push({ name: 'Login' })
+//     }
+//   } catch (error) {
+//     console.error('Authentication error:', error)
+//   }
+// }
 </script>
 
 <style scoped>

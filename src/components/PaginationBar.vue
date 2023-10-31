@@ -5,7 +5,7 @@
       <select
         v-model="localItemsPerPage"
         @change="handleItemsPerPageChange"
-        class="bg-light px-1 py-1 cursor-pointer dark:bg-light-blue dark:text-light-gray"
+        class="bg-light px-1 py-1 cursor-pointer dark:bg-text-color dark:text-light-gray"
       >
         <option>10</option>
         <option>20</option>

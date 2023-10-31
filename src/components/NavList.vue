@@ -9,10 +9,9 @@
         Manage Users
       </li>
     </RouterLink>
-
     <li
-      v-if="isAuth"
-      @click="handleItemClick"
+      v-if="isAuthenticated"
+      @click="handleLogoutClick"
       class="flex flex-row justify-center py-1 px-0 items-end h-12 gap-2 hover:text-primary-color"
     >
       <LoginIcon />
@@ -22,29 +21,22 @@
 </template>
 
 <script setup>
-//import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import UsersEditIcon from './icons/UsersEditIcon.vue'
 import LoginIcon from './icons/LoginIcon.vue'
-//import authService from '../services/authenticate'
-//import { useRouter } from 'vue-router'
 
-//const router = useRouter()
+import { useAuth } from '../hooks/useAuth'
 
-//const isAuth = ref(authService.isAuthenticated())
+const { isAuthenticated, logout } = useAuth()
 
 const emit = defineEmits(['handleItemClose'])
 
 const handleItemClick = () => {
-  // try {
-  //   const isAuthenticated = await authService.logout()
+  emit('handleItemClose')
+}
 
-  //   if (isAuthenticated) {
-  //     router.push({ name: 'Login' })
-  //   }
-  // } catch (error) {
-  //   console.error('Authentication error:', error)
-  // }
+const handleLogoutClick = () => {
+  logout()
   emit('handleItemClose')
 }
 </script>

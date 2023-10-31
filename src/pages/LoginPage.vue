@@ -22,7 +22,7 @@
 
       <div class="flex flex-col gap-2">
         <button
-          class="px-4 py-1.5 rounded-2xl bg-primary-color text-light :hover:cursor-pointer mt-3"
+          class="px-4 py-1.5 rounded-lg bg-primary-color text-light :hover:cursor-pointer mt-3"
           type="submit"
           required
         >
@@ -36,32 +36,18 @@
 
 <script setup>
 import { ref } from 'vue'
-import authService from '../services/authenticate.js'
-import { useRouter } from 'vue-router'
 import FormField from '../components/FormField.vue'
+import { useAuth } from '../hooks/useAuth'
 
 const username = ref('')
 const password = ref('')
-const error = ref('')
 
-const router = useRouter()
+const { login, error } = useAuth()
 
-const handleLogin = async () => {
-  try {
-    // Call the authenticate function with entered credentials
-    const isAuthenticated = await authService.login(username.value, password.value)
-    if (isAuthenticated) {
-      console.log('Successfully logged in')
-      router.push({ name: 'Admin' })
-    } else {
-      router.push({ name: 'Login' })
-      error.value = 'Incorrect username or password. Please try again.'
-      password.value = ''
-      username.value = ''
-    }
-  } catch (error) {
-    console.error('Authentication error:', error)
-  }
+const handleLogin = () => {
+  login(username.value, password.value)
+  password.value = ''
+  username.value = ''
 }
 </script>
 

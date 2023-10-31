@@ -114,7 +114,7 @@ table th:nth-child(3) {
 }
 @media (max-width: 767.98px) {
   .scroll {
-    max-width: 35rem;
+    max-width: 36rem;
     overflow-x: scroll;
   }
   table {

@@ -1,5 +1,5 @@
 const admin = {
-  username: 'darnahorna',
+  username: 'testadmin',
   password: 'qwerty'
 }
 

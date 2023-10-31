@@ -1,0 +1,17 @@
+{
+  "short_name": "DefStack",
+  "name": "This is a playground project from Prevas",
+  "icons": [
+    {
+      "src": "./logo.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f7f8f8",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#00204a",
+  "description": "Here you can perform the simplest CRUD operations with users."
+}

@@ -1,12 +1,15 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import SearchBar from '../components/SearchBar.vue'
-import users from '../../data/data'
 import UserForm from '../views/UserForm.vue'
 import PaginationBar from '../components/PaginationBar.vue'
 import TableComponent from '../components/TableComponent.vue'
 import TransitionSlideLeft from '../components/TransitionSlideLeft.vue'
 import { useToggle } from '../hooks/useToggle'
+
+import { useUserStore } from '../stores/UserStores'
+const { users } = storeToRefs(useUserStore())
 
 const arr = ref([...users])
 const count = ref(arr.value.length)
@@ -70,6 +73,7 @@ const handleSearch = (search) => {
 </script>
 
 <template>
+  <!--add separate component-->
   <div class="p-5 m-5 page">
     <div class="flex justify-between flex-row mb-5">
       <h1 class="font-semibold text-lg">Manage Users</h1>
@@ -87,10 +91,11 @@ const handleSearch = (search) => {
         <SearchBar v-model="searchInput" @handleSearch="handleSearch" placeholder="Search users" />
       </div>
     </div>
+    <!--add separate component-->
 
     <TableComponent
       :headers="tableHeaders"
-      :users="computedUsers"
+      :users="users"
       @handleUserDelete="handleUserDelete"
       @showEditUserPage="showEditUserPage"
     />

@@ -24,7 +24,6 @@
 import { RouterLink } from 'vue-router'
 import UsersEditIcon from './icons/UsersEditIcon.vue'
 import LoginIcon from './icons/LoginIcon.vue'
-
 import { useAuth } from '../hooks/useAuth'
 
 const { isAuthenticated, logout } = useAuth()

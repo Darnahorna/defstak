@@ -7,6 +7,7 @@
 
 <script setup>
 import { useDark, useToggle } from '@vueuse/core'
+
 import NightIcon from './icons/NightIcon.vue'
 import DayIcon from './icons/DayIcon.vue'
 

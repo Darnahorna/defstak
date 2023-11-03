@@ -3,7 +3,6 @@ import { RouterView } from 'vue-router'
 import NavBar from './views/NavBar.vue'
 import NavList from './components/NavList.vue'
 import { provideAuthContext } from './hooks/useAuth'
-
 provideAuthContext()
 </script>
 

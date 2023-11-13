@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, defineProps } from 'vue'
 
 const props = defineProps({
@@ -34,14 +34,12 @@ const props = defineProps({
   isRequired: Boolean
 })
 const inputId = computed(() => {
-  //returns computed ref
   return props.name || `field-${Math.random().toString(36).substr(2, 10)}`
 })
 
 const emit = defineEmits(['update:modelValue'])
 
-const handleChange = (event) => {
-  emit('update:modelValue', event.target.value)
-  //emit selected value
+const handleChange = (event: Event) => {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
 }
 </script>

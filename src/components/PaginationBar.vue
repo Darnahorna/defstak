@@ -3,7 +3,7 @@
     <div>
       <span>Rows per page </span>
       <select
-        v-model="localItemsPerPage"
+        v-model="userStore.itemsPerPage"
         @change="handleItemsPerPageChange"
         class="bg-light px-1 py-1 cursor-pointer dark:bg-text-color dark:text-light-gray"
       >
@@ -15,53 +15,55 @@
 
     <div class="flex flex-row gap-4">
       <div class="flex flex-row gap-4 opacity-70">
-        <span @click="previousPage" class="cursor-pointer"><ArrowLeft /></span>
-        <span @click="nextPage" class="cursor-pointer"><ArrowRight /></span>
+        <span @click="previousPage" class="cursor-pointer" v-if="userStore.currentPage > 1"
+          ><ArrowLeft
+        /></span>
+        <span @click="nextPage" class="cursor-pointer" v-if="userStore.currentPage < maxPage">
+          <ArrowRight
+        /></span>
       </div>
       <div>
-        <span>{{ startItem }} - {{ endItem }}</span> of <span>{{ totalItems }}</span> items
+        <span>{{ startItem }} - {{ endItem }}</span> of
+        <span>{{ userStore.totalItems }}</span> items
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, toRef, computed, defineEmits, defineProps } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useUserStore } from '@/stores/UserStore'
+
 import ArrowLeft from './icons/ArrowLeftIcon.vue'
 import ArrowRight from './icons/ArrowRightIcon.vue'
 
-const props = defineProps({ totalItems: Number, itemsPerPage: Number, currentPage: Number })
-const emit = defineEmits(['pageChange', 'itemsPerPageChange'])
+const userStore = useUserStore()
 
-const currentPage = toRef(props.currentPage)
-const localCurrentPage = ref(currentPage.value)
-
-const itemsPerPage = toRef(props.itemsPerPage)
-const localItemsPerPage = ref(itemsPerPage.value)
+const maxPage = Math.ceil(userStore.totalItems / userStore.itemsPerPage) as number
 
 const startItem = computed(() => {
-  return (props.currentPage - 1) * props.itemsPerPage + 1
+  return (userStore.currentPage - 1) * userStore.itemsPerPage + 1
 })
 
 const endItem = computed(() => {
-  return Math.min(props.currentPage * props.itemsPerPage, props.totalItems)
+  return Math.min(userStore.currentPage * userStore.itemsPerPage, userStore.totalItems)
 })
 
-const handleItemsPerPageChange = () => {
-  localCurrentPage.value = 1
-  emit('itemsPerPageChange', Number(localItemsPerPage.value))
+const handleItemsPerPageChange = (event: Event) => {
+  userStore.setItemsPerPage(Number((event.target as HTMLSelectElement).value))
 }
+
 const previousPage = () => {
-  if (localCurrentPage.value > 1) {
-    localCurrentPage.value--
-    emit('pageChange', localCurrentPage.value)
+  if (userStore.currentPage > 1) {
+    let prev = userStore.currentPage - 1
+    userStore.setCurrentPage(prev)
   }
 }
+
 const nextPage = () => {
-  const maxPage = Math.ceil(props.totalItems / localItemsPerPage.value)
-  if (localCurrentPage.value < maxPage) {
-    localCurrentPage.value++
-    emit('pageChange', localCurrentPage.value)
+  if (userStore.currentPage < maxPage) {
+    let next = userStore.currentPage + 1
+    userStore.setCurrentPage(next)
   }
 }
 </script>

@@ -1,18 +1,23 @@
+/*
+ * ATTENTION! This code is simulation of a real API calls
+ * It is a mock implementation.
+ */
+
 const admin = {
   username: 'testadmin',
   password: 'qwerty'
 }
 
-export const isAuthenticated = () => {
+export const isAuthenticated = (): boolean => {
   const token = localStorage.getItem('token')
   if (token) {
-    return true // User is authenticated
+    return true
   } else {
     return false
   }
 }
 
-export const login = (username, password) => {
+export const login = (username: string, password: string) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       if (username === admin.username && password === admin.password) {

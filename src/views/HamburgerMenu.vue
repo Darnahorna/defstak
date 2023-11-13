@@ -1,7 +1,3 @@
-<script setup>
-import NavList from '../components/NavList.vue'
-</script>
-
 <template>
   <div class="hamburger-menu">
     <div className="hamburger-menu">
@@ -21,8 +17,11 @@ import NavList from '../components/NavList.vue'
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from 'vue'
+
+import NavList from '../components/NavList.vue'
+
 const isMenuOpen = ref(false)
 
 const toggleMenu = () => {

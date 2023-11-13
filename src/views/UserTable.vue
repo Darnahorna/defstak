@@ -17,13 +17,13 @@
                 @click="showEditUserPage(user)"
                 class="bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5 dark:bg-light-blue dark:text-light hover:text-green"
               >
-                Edit
+                <EditIcon /> Edit
               </button>
               <button
                 @click="handleUserDelete(user)"
                 class="bg-light-gray flex flex-row opacity-70 self-center gap-3 text-xs justify-center px-4 py-1.5 hover:text-red dark:bg-light-blue dark:text-light dark:hover:text-red"
               >
-                Delete
+                <DeleteIcon /> Delete
               </button>
             </div>
           </td>
@@ -36,19 +36,32 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  users: Array,
-  headers: Array
-})
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useUserStore } from '@/stores/UserStore'
+import { useRouter } from 'vue-router'
 
-const emits = defineEmits(['showEditUserPage', 'handleUserDelete'])
+import EditIcon from '../components/icons/UsersEditIcon.vue'
+import DeleteIcon from '../components/icons/DeleteIcon.vue'
 
-const showEditUserPage = (user) => {
-  emits('showEditUserPage', user)
+import type { User, Headers } from '../types/user'
+
+interface UserTableProps {
+  users: User[]
 }
-const handleUserDelete = (user) => {
-  emits('handleUserDelete', user)
+
+const { users } = defineProps<UserTableProps>()
+
+const headers = ref<Headers>(['id', 'name', 'surname', 'role', 'email'])
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const showEditUserPage = (user: User) => {
+  router.push({ name: 'EditUser', params: { userId: user.id } })
+}
+const handleUserDelete = (user: User) => {
+  userStore.deleteUser(user)
 }
 </script>
 
@@ -102,7 +115,6 @@ table th:nth-child(3) {
 }
 
 /* // `xxl` applies to x-large devices (large desktops, less than 1400px) */
-
 @media (max-width: 991.98px) {
   .scroll {
     max-width: 45rem;

@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="5" cy="2.75" r="2.25" />
       <path

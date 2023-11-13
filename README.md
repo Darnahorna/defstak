@@ -1,6 +1,6 @@
 # DefStak 🚀
 
-This is an playground application Vue 3 in Vite. Here you are able to perform the simplest CRUD operations with users. The project is written in Vue in Vite using VueUse, Vue Router and Tailwind to explore its the possibilities.
+This is an playground application Vue 3 in Vite. Here you are able to perform the simplest CRUD operations with users. The project is written in Vue and Typescript in Vite using VueUse, Vue Router and TailwindCSS to explore its the possibilities.
 
 ## Recommended IDE Setup
 
@@ -50,15 +50,6 @@ npm run lint
 
 To try out application you can here - [defstak.vercel.app](https://defstak.vercel.app/).
 
-### Test data
-
-```sh
-{
-"username" : "testadmin",
-"password": "qwerty
-}
-```
-
 This application has several pages.
 
 - /login - login as admin
@@ -70,6 +61,7 @@ The design of the application is fully responsive to mobile devices. Yes, it inc
 ## Technologies Used
 
 - Vue 3 in Vite
+- Typescript
 - Vue Router
 - VueUse
 - TailwindCSS

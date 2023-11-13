@@ -5,7 +5,7 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
 
 import NightIcon from './icons/NightIcon.vue'

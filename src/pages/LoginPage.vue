@@ -30,22 +30,24 @@
         </button>
       </div>
     </form>
-    <div v-if="error" class="text-red mt-3">{{ error }}</div>
+    <div v-if="authStore.error" class="text-red mt-3">{{ authStore.error }}</div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import FormField from '../components/FormField.vue'
-import { useAuth } from '../hooks/useAuth'
+import { useAuthStore } from '@/stores/AuthStore'
 
-const username = ref('')
-const password = ref('')
+const authStore = useAuthStore()
 
-const { login, error } = useAuth()
+const username = ref<string>('')
+const password = ref<string>('')
+
+//const { login, error } = useAuth()
 
 const handleLogin = () => {
-  login(username.value, password.value)
+  authStore.login(username.value, password.value)
   password.value = ''
   username.value = ''
 }

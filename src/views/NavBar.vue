@@ -11,7 +11,7 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import HamburgerMenu from './HamburgerMenu.vue'
 import DarkMode from '../components/DarkMode.vue'
 </script>

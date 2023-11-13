@@ -2,15 +2,12 @@
   <div class="mt-3">
     <div class="flex gap-4">
       <CloseIcon class="close-icon" @click="closeForm"></CloseIcon>
-      <h1 v-if="mode === 'add'" class="text-2xl">Add New User</h1>
-      <h1 v-else class="text-2xl">Edit New User</h1>
+      <h1 class="text-2xl">Add User</h1>
     </div>
     <div class="flex justify-center flex-col self-center items-center p-8 w-full">
-      <h2 class="text-lg mb-3" v-if="mode === 'add'">User Details</h2>
-      <h2 class="text-lg mb-3" v-else>Edit User</h2>
+      <h2 class="text-lg mb-3">Add User Details</h2>
       <form @submit.prevent="handleSubmit" id="user-form" class="flex flex-col gap-6 w-80">
-        <p v-if="mode === 'add'">Please enter user details</p>
-        <p v-else>Please edit user details</p>
+        <p>Please enter user details</p>
         <FormField
           v-model="formData.name"
           label="Enter user name"
@@ -45,45 +42,44 @@
         <button
           type="submit"
           form="user-form"
-          :value="mode === 'add' ? 'Add' : 'Update'"
+          value="Add"
           class="bg-primary-color py-3 px-4 text-light text-sm rounded-lg :hover:bg-secondary-color"
         >
-          {{ mode === 'add' ? 'Add' : 'Update' }}
+          Add
         </button>
       </form>
     </div>
   </div>
 </template>
 
-<script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/UserStore'
+
 import FormField from '../components/FormField.vue'
 import FormSelect from '../components/FormSelect.vue'
 import CloseIcon from '../components/icons/CloseIcon.vue'
+import type { User } from '@/types/user'
 
 const roleOptions = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-const { mode, user } = defineProps(['mode', 'user'])
-const emit = defineEmits(['closeForm', 'userDataSubmitted', 'userDataEdited'])
+const router = useRouter()
+const userStore = useUserStore()
 
-const formData = ref({ ...user }) // Initialize formData with user data if in edit mode
-
-if (mode === 'add') {
-  formData.value.role = 1
-}
+const formData = ref<User>({
+  name: '',
+  surname: '',
+  email: '',
+  role: 1
+} as User)
 
 const closeForm = () => {
-  emit('closeForm')
+  router.push({ name: 'Admin' })
 }
 
 const handleSubmit = () => {
-  if (mode === 'add') {
-    emit('userDataSubmitted', formData.value)
-  } else if (mode === 'edit') {
-    const editedUser = { ...formData.value }
-    console.log(editedUser)
-    emit('userDataEdited', editedUser)
-  }
-  emit('closeForm')
+  userStore.addNewUser(formData.value)
+  closeForm()
 }
 </script>

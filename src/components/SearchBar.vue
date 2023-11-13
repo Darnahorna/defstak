@@ -13,19 +13,22 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import SearchIcon from './icons/SearchIcon.vue'
 
-defineProps({
-  modelValue: String,
-  placeholder: String
-})
+interface SearchBarProps {
+  modelValue: string
+  placeholder: string
+}
 
-const emit = defineEmits(['handleSearch'])
+const { modelValue, placeholder } = defineProps<SearchBarProps>()
 
-const handleSearch = (event) => {
-  emit('handleSearch', event.target.value)
+const emits = defineEmits<{
+  'update:modelValue': [searchTerm: string]
+  handleSearch: [searchTerm: string]
+}>()
+
+const handleSearch = (event: Event) => {
+  emits('update:modelValue', (event.target as HTMLInputElement).value)
 }
 </script>
-
-<style scoped></style>

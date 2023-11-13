@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
+
 import NavBar from './views/NavBar.vue'
 import NavList from './components/NavList.vue'
-import { provideAuthContext } from './hooks/useAuth'
-provideAuthContext()
+import TransitionSlideLeft from './components/TransitionSlideLeft.vue'
 </script>
 
 <template>
@@ -13,8 +13,10 @@ provideAuthContext()
     <NavBar />
   </header>
 
-  <main class="main">
-    <RouterView />
+  <main class="main page">
+    <TransitionSlideLeft>
+      <RouterView />
+    </TransitionSlideLeft>
   </main>
   <div class="sidebar"><NavList /></div>
   <footer class="footer flex flex-row justify-center items-center border-t p-3 bottom-0">
@@ -26,6 +28,9 @@ provideAuthContext()
 </template>
 
 <style scoped>
+.page {
+  min-height: 80vh;
+}
 html.dark {
   color-scheme: dark;
 }

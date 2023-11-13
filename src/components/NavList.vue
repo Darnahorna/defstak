@@ -10,7 +10,7 @@
       </li>
     </RouterLink>
     <li
-      v-if="isAuthenticated"
+      v-if="authStore.isAuthenticated"
       @click="handleLogoutClick"
       class="flex flex-row justify-center py-1 px-0 items-end h-12 gap-2 hover:text-primary-color"
     >
@@ -20,13 +20,13 @@
   </ul>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import UsersEditIcon from './icons/UsersEditIcon.vue'
 import LoginIcon from './icons/LoginIcon.vue'
-import { useAuth } from '../hooks/useAuth'
+import { useAuthStore } from '@/stores/AuthStore'
 
-const { isAuthenticated, logout } = useAuth()
+const authStore = useAuthStore()
 
 const emit = defineEmits(['handleItemClose'])
 
@@ -35,7 +35,7 @@ const handleItemClick = () => {
 }
 
 const handleLogoutClick = () => {
-  logout()
+  authStore.logout()
   emit('handleItemClose')
 }
 </script>

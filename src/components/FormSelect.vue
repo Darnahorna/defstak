@@ -13,26 +13,26 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 
-const props = defineProps({
-  label: String,
-  name: String,
-  options: Array,
-  modelValue: Number
-})
+interface FormSelectProps {
+  label: string
+  name: string
+  options: number[]
+  modelValue: number
+}
+
+const { label, name, options, modelValue } = defineProps<FormSelectProps>()
 
 const emit = defineEmits(['update:modelValue'])
 
-const handleChange = (event) => {
-  //emit selected value
-  emit('update:modelValue', Number(event.target.value))
+const handleChange = (event: Event) => {
+  emit('update:modelValue', Number((event.target as HTMLInputElement).value))
 }
 
 const selectId = computed(() => {
-  //returns computed ref
-  return props.name || `select-${Math.random().toString(36).substr(2, 10)}`
+  return name || `select-${Math.random().toString(36).substr(2, 10)}`
 })
 </script>
 

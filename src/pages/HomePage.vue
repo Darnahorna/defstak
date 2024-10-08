@@ -4,9 +4,8 @@
       <h1 class="text-xl font-extrabold mb-4 font-lg">Welcome to Default Stack Project</h1>
       <img src="../assets/images/logo.png" class="logo-home" />
       <p class="text-lg">
-        This is a test project from Prevas. The project is written in Vue in Vite using Vue Core,
-        Vue Router and Tailwind to explore its the possibilities. Here you will be able to perform
-        the simplest CRUD operations with users.
+        The project is written in Vue in Vite using Vue Core, Vue Router and Tailwind to explore its
+        the possibilities. Here you will be able to perform the simplest CRUD operations with users.
       </p>
     </div>
   </div>
